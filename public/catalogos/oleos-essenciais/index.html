@@ -1,0 +1,747 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÓLEOS ESSENCIAIS - TULIPA ESSÊNCIAS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+      background: #f8f5f0;
+      min-height: 100vh;
+    }
+    
+    .heading-serif {
+      font-family: 'Playfair Display', Georgia, serif;
+      letter-spacing: -0.02em;
+    }
+
+    /* Hero Banner Full */
+    .hero-banner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1400 / 620;
+      overflow: hidden;
+      background: #e8e3d8;
+    }
+    .hero-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .hero-banner .banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(1,132,61,0.5) 0%, transparent 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-banner .banner-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: linear-gradient(180deg, transparent, #f8f5f0);
+      pointer-events: none;
+    }
+
+    .search-section {
+      position: relative;
+      z-index: 10;
+      max-width: 1280px;
+      margin: -24px auto 0;
+      padding: 0 16px;
+    }
+    .search-card {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 16px 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    @media (min-width: 768px) {
+      .search-card { flex-direction: row; align-items: center; }
+    }
+    .search-card .search-wrap {
+      flex: 1;
+      position: relative;
+    }
+    .search-card .search-wrap i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #a39d8f;
+    }
+    .search-card .search-wrap input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 12px 12px 12px 44px;
+      font-size: 0.95rem;
+      outline: none;
+      color: #2c2a25;
+    }
+    .search-card .search-wrap input::placeholder { color: #a39d8f; }
+    .search-card .filter-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .search-card .filter-group button {
+      padding: 7px 16px;
+      border-radius: 100px;
+      border: 1px solid #d4cdc0;
+      background: transparent;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #4a4a40;
+      font-family: inherit;
+    }
+    .search-card .filter-group button:hover {
+      background: rgba(1,132,61,0.08);
+      border-color: #01843d;
+    }
+    .search-card .filter-group button.active {
+      background: #01843d;
+      color: #fff;
+      border-color: #01843d;
+    }
+    .search-card .pdf-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 18px;
+      border-radius: 100px;
+      border: 1px solid #01843d;
+      background: rgba(1,132,61,0.06);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #01843d;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .search-card .pdf-btn:hover {
+      background: #01843d;
+      color: #fff;
+    }
+
+    .catalog-section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 16px 48px;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .section-title h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2rem;
+      color: #2c2a25;
+      letter-spacing: -0.02em;
+    }
+    .section-title .badge {
+      display: inline-block;
+      background: rgba(1,132,61,0.1);
+      color: #01843d;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 100px;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .oil-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 24px;
+    }
+    @media (min-width: 640px) { .oil-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+    @media (min-width: 1024px) { .oil-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; } }
+    @media (min-width: 1280px) { .oil-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
+
+    .oil-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid #e0dad0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      aspect-ratio: 3 / 5;
+    }
+    .oil-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.10);
+      border-color: #01843d;
+    }
+    .oil-card .card-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #f0ece4;
+    }
+    .oil-card .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .oil-card:hover .card-img img {
+      transform: scale(1.06);
+    }
+    .oil-card .card-gradient {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 55%;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.65) 100%);
+      pointer-events: none;
+    }
+    .oil-card .card-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(1,132,61,0.9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 4px 14px;
+      border-radius: 100px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 1.2px;
+      z-index: 2;
+    }
+    .oil-card .card-body {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 18px 18px;
+      z-index: 2;
+    }
+    .oil-card .card-body h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #fff;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    }
+    .oil-card .card-body p {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.15);
+    }
+    .oil-card .card-body .card-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 6px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.5px;
+      transition: gap 0.2s;
+    }
+    .oil-card:hover .card-body .card-arrow {
+      gap: 10px;
+      color: #fff;
+    }
+      color: #01843d;
+      letter-spacing: 1px;
+      transition: gap 0.25s;
+    }
+    .oil-card:hover .card-body .card-arrow {
+      gap: 12px;
+    }
+
+    .viewer-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .viewer-overlay.open {
+      display: flex;
+    }
+    .viewer-glass {
+      display: flex;
+      width: 100%;
+      max-width: 1100px;
+      max-height: 90vh;
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .viewer-glass .viewer-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+    }
+    .viewer-glass .viewer-close:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    .viewer-glass .viewer-image {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background: rgba(0,0,0,0.2);
+      min-height: 400px;
+      position: relative;
+    }
+    .viewer-glass .viewer-image img {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .viewer-glass .viewer-image .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .viewer-glass .viewer-image .nav-arrow:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-50%) scale(1.05);
+    }
+    .viewer-glass .viewer-image .nav-arrow.prev { left: 16px; }
+    .viewer-glass .viewer-image .nav-arrow.next { right: 16px; }
+    .viewer-glass .viewer-image .counter {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+      padding: 4px 16px;
+      border-radius: 100px;
+    }
+    .viewer-glass .viewer-info {
+      width: 360px;
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(40px);
+      border-left: 1px solid rgba(255,255,255,0.08);
+      overflow-y: auto;
+    }
+    .viewer-glass .viewer-info .tag {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .viewer-glass .viewer-info .name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .viewer-glass .viewer-info .divider {
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, #01843d, #00c853);
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .viewer-glass .viewer-info .desc {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      flex: 1;
+    }
+    .viewer-glass .viewer-info .share-btn {
+      margin-top: 24px;
+      padding: 12px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, #01843d, #00a84a);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .viewer-glass .viewer-info .share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(1,132,61,0.3);
+    }
+
+    @media (max-width: 768px) {
+      .hero-section h1 { font-size: 2rem; }
+      .viewer-glass { flex-direction: column; max-height: 95vh; }
+      .viewer-glass .viewer-image { padding: 20px; min-height: 250px; }
+      .viewer-glass .viewer-image img { max-height: 40vh; }
+      .viewer-glass .viewer-info { width: 100%; padding: 24px 20px; max-height: 45vh; }
+      .viewer-glass .viewer-image .nav-arrow { width: 36px; height: 36px; font-size: 14px; }
+      .viewer-glass .viewer-image .nav-arrow.prev { left: 8px; }
+      .viewer-glass .viewer-image .nav-arrow.next { right: 8px; }
+      .viewer-glass .viewer-info .name { font-size: 1.5rem; }
+    }
+
+    .footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.75rem;
+      color: #a39d8f;
+      border-top: 1px solid #e8e3d8;
+    }
+
+    /* Video Background */
+    .video-bg-section {
+      position: relative;
+      width: 100%;
+      min-height: 600px;
+      overflow: hidden;
+      background: #f0ece4;
+    }
+    .video-bg-section .bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+      display: block;
+    }
+    .video-bg-section .bg-glass {
+      position: absolute;
+      inset: 0;
+      background: rgba(248,245,240,0.6);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      z-index: 1;
+    }
+    .video-bg-section .catalog-section {
+      position: relative;
+      z-index: 2;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .search-section, .viewer-overlay, .footer, .pdf-btn { display: none !important; }
+      .hero-banner { max-height: 300px; }
+      .catalog-section { padding: 16px !important; }
+      .oil-grid { gap: 12px !important; }
+      .oil-card { break-inside: avoid; border-radius: 12px; }
+      .oil-card .card-body h3 { font-size: 1rem; }
+      .oil-card .card-body p { font-size: 0.7rem; -webkit-line-clamp: 1; }
+      .oil-card .card-body .card-arrow { display: none; }
+      .section-title { margin-bottom: 12px !important; }
+      .section-title h2 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero-banner">
+    <img src="banner-oleo.png" alt="Óleos Essenciais">
+    <div class="banner-overlay"></div>
+    <div class="banner-fade"></div>
+  </div>
+
+  <div class="search-section">
+    <div class="search-card">
+      <div class="search-wrap">
+        <i class="fa-solid fa-search"></i>
+        <input id="search" type="text" placeholder="Buscar óleo essencial..." onkeyup="filterOils()">
+      </div>
+      <div class="filter-group">
+        <button class="active" onclick="filterByTag('all')">Todos</button>
+        <button onclick="filterByTag('relax')">Relaxamento</button>
+        <button onclick="filterByTag('pele')">Pele</button>
+        <button onclick="filterByTag('purifica')">Purificação</button>
+      </div>
+      <button class="pdf-btn" onclick="gerarPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+    </div>
+  </div>
+
+  <div class="video-bg-section">
+    <video class="bg-video" autoplay muted loop playsinline preload="auto" poster="banner-oleo.png">
+      <source src="https://cdn.pixabay.com/video/2021/11/07/94992-644694733_large.mp4" type="video/mp4">
+    </video>
+    <div class="bg-glass"></div>
+
+    <section class="catalog-section">
+      <div class="section-title">
+        <div class="badge">✦ NOSSA SELEÇÃO</div>
+        <h2 id="grid-title">Óleos Essenciais</h2>
+      </div>
+      <div id="grid" class="oil-grid"></div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    Catálogo de Óleos Essenciais - TULIPA ESSÊNCIAS<br>
+    Imagens e descrições baseadas no Guia de Produtos oficial
+  </footer>
+
+  <div class="viewer-overlay" id="viewer">
+    <div class="viewer-glass" onclick="event.stopPropagation()">
+      <button class="viewer-close" onclick="closeViewer()"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="viewer-image">
+        <button class="nav-arrow prev" onclick="navigateOil(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+        <img id="viewer-img" src="" alt="">
+        <button class="nav-arrow next" onclick="navigateOil(1)"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="counter" id="viewer-counter"></div>
+      </div>
+
+      <div class="viewer-info">
+        <div class="tag" id="viewer-tag"></div>
+        <div class="name" id="viewer-name"></div>
+        <div class="divider"></div>
+        <div class="desc" id="viewer-desc"></div>
+        <button class="share-btn" onclick="shareOil()">
+          <i class="fa-solid fa-share-nodes"></i> Compartilhar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const oils = [
+      { name: "Alfa Bisabolol Candeia", file: "Alfa Bisabolol Candeia.png", tag: "pele", desc: "Extraído da árvore brasileira de candeia. Rico em bisabolol, conhecido por acalmar a pele e reduzir irritações com ação anti-inflamatória suave." },
+      { name: "Anis Estrelado", file: "Anis Estrelado.png", tag: "relax", desc: "Aroma doce e picante característico. Tradicionalmente usado para promover sensação de conforto e bem-estar digestivo." },
+      { name: "Bergamota", file: "Bergamota.png", tag: "pele", desc: "A mais delicada das plantas cítricas. Muito utilizada pelos italianos para revigorar a pele e elevar o humor." },
+      { name: "Betula", file: "Betula.png", tag: "relax", desc: "Óleo de bétula com aroma amadeirado fresco. Tradicionalmente apreciado em massagens para sensação de alívio muscular." },
+      { name: "Canela Casca", file: "Canela Casca.png", tag: "purifica", desc: "Parente próxima da canela, com aroma condimentado e forte. Traz sensação de alívio e aconchego." },
+      { name: "Canela Folhas", file: "Canela Folhas.png", tag: "purifica", desc: "Versão mais suave da canela. Aroma quente e picante, excelente para difusão e criação de ambientes acolhedores." },
+      { name: "Cedro", file: "Cedro.png", tag: "pele", desc: "Promove pele limpa e saudável. Aroma acolhedor e amadeirado que auxilia no relaxamento e bem-estar." },
+      { name: "Cipreste", file: "Cipreste.png", tag: "pele", desc: "Destilado dos gravetos e folhagem da árvore. Popular em spas para ajudar a embelezar e tonificar a pele." },
+      { name: "Citronela", file: "Citronela.png", tag: "purifica", desc: "Aroma fresco e marcante. Companheiro ideal para acampamentos, caminhadas e proteção ao ar livre." },
+      { name: "Cravo Folhas", file: "Cravo Folhas.png", tag: "purifica", desc: "Óleo estimulante e potente. Tradicionalmente usado em massagens confortantes e para purificação." },
+      { name: "Erva Doce", file: "Erva Doce.png", tag: "relax", desc: "Aroma distinto de alcaçuz. Usado desde a antiguidade por guerreiros romanos para fortalecer e dar coragem." },
+      { name: "Eucalipto Staigeriana", file: "Eucalipto Staigeriana.png", tag: "purifica", desc: "Variedade cítrica de eucalipto. Aroma refrescante que promove sensação de vias aéreas livres e purificação." },
+      { name: "Gengibre", file: "Gengibre.png", tag: "relax", desc: "Colhido em Madagascar do rizoma fresco. Aroma condimentado e quente, revigorante e acolhedor." },
+      { name: "Laranja Doce", file: "Laranja Doce.png", tag: "relax", desc: "Aroma cítrico maravilhoso. Excelente para energizar, revigorar e elevar o humor naturalmente." },
+      { name: "Lavanda", file: "Lavanda.png", tag: "relax", desc: "O mais valorizado por seu aroma inconfundível. Conhecido mundialmente por suas qualidades relaxantes e calmantes." },
+      { name: "Lavandin", file: "Lavandin.png", tag: "relax", desc: "Híbrido de lavanda com aroma floral mais intenso. Excelente para relaxamento profundo e ambientes de descanso." },
+      { name: "Limão Siciliano", file: "Limao Siciliano.png", tag: "purifica", desc: "Purificante tópico e aromático favorito. Pode ser combinado com muitos outros óleos para limpeza e frescor." },
+      { name: "Limão Tahiti", file: "Limao Tahiti.png", tag: "purifica", desc: "Aroma cítrico marcante e revigorante. Afeta positivamente o humor e traz sensação de limpeza." },
+      { name: "Mandarina Verde", file: "Mandarina Verde.png", tag: "relax", desc: "Extraída do fruto não maduro da tangerina. Propriedades reconfortantes e de limpeza, aroma doce e fresco." },
+      { name: "Mandarina Vermelha", file: "Mandarina Vermelha.png", tag: "relax", desc: "Aroma cítrico doce e vibrante. Excelente para elevar o espírito e criar sensações positivas." },
+      { name: "Manjericão", file: "Manjericao.png", tag: "relax", desc: "Aroma acolhedor e herbáceo. Ajuda a reduzir sentimentos de tensão quando aplicado na nuca e têmporas." },
+      { name: "Manjerona", file: "Manjerona.png", tag: "relax", desc: "Ideal para adicionar em óleos de massagem. Ajuda a aliviar músculos cansados e desgastados." },
+      { name: "Melaleuca", file: "Melaleuca.png", tag: "pele", desc: "Rica em mais de 90 compostos. Excelente para a pele com aplicações ilimitadas e propriedades purificantes." },
+      { name: "Moringa Oleifera", file: "Moringa Oleifera.png", tag: "pele", desc: "Óleo altamente nutritivo extraído das sementes. Rico em vitaminas e ideal para hidratação profunda da pele e cabelos." },
+      { name: "Noz Moscada", file: "Noz Moscada.png", tag: "relax", desc: "Aroma quente, picante e reconfortante. Tradicionalmente usado para promover foco e bem-estar emocional." },
+      { name: "Olíbano", file: "Olibano.png", tag: "relax", desc: "Talvez o mais precioso dos óleos. Procurado há milênios por promover relaxamento e efeito positivo sobre o humor." },
+      { name: "Palmarosa", file: "Palmarosa.png", tag: "pele", desc: "Aroma floral doce e equilibrante. Excelente para promover hidratação e aparência saudável da pele." },
+      { name: "Petitgrain", file: "Petitgrain.png", tag: "relax", desc: "Amplamente usado em perfumaria. Nota fresca e herbácea que oferece benefícios relaxantes e alívio de tensão." },
+      { name: "Pimenta Preta", file: "Pimenta Preta.png", tag: "purifica", desc: "Benefícios notáveis contra ameaças sazonais. Use com cautela em aplicações tópicas." },
+      { name: "Pimenta Rosa", file: "Pimenta Rosa.png", tag: "purifica", desc: "Aroma picante e frutado vibrante. Ajuda a elevar o humor e criar atmosferas energizantes." },
+      { name: "Sálvia Esclareia", file: "Salvia Esclareia.png", tag: "relax", desc: "Usos desde a Idade Média. Ajuda a relaxar, acalmar e promove aspecto revitalizado à pele." },
+      { name: "Tomilho Branco", file: "Tomilho Branco.png", tag: "purifica", desc: "Óleo potente com efeitos purificantes. Era oferecido a guerreiros na Idade Média por sua força e coragem." }
+    ];
+
+    let currentIndex = 0;
+    let filteredOils = oils;
+
+    function createCard(oil, index) {
+      const card = document.createElement('div');
+      card.className = 'oil-card';
+      card.innerHTML = `
+        <div class="card-img">
+          <img src="${oil.file}" alt="${oil.name}" loading="lazy">
+        </div>
+        <div class="card-gradient"></div>
+        <span class="card-tag">${oil.tag.toUpperCase()}</span>
+        <div class="card-body">
+          <h3>${oil.name}</h3>
+          <p>${oil.desc}</p>
+          <span class="card-arrow">AMPLIAR <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      `;
+      card.onclick = () => openViewer(index);
+      return card;
+    }
+
+    function renderOils(oilsArray) {
+      filteredOils = oilsArray;
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+      oilsArray.forEach((oil, i) => grid.appendChild(createCard(oil, i)));
+      document.getElementById('grid-title').textContent = 'Óleos Essenciais';
+    }
+
+    function filterOils() {
+      const term = document.getElementById('search').value.toLowerCase().trim();
+      const filtered = oils.filter(o => o.name.toLowerCase().includes(term));
+      renderOils(filtered);
+      updateActiveTag('all');
+    }
+
+    function filterByTag(tag) {
+      const term = document.getElementById('search').value.toLowerCase().trim();
+      let filtered = oils;
+      if (tag !== 'all') filtered = filtered.filter(o => o.tag === tag);
+      if (term) filtered = filtered.filter(o => o.name.toLowerCase().includes(term));
+      renderOils(filtered);
+      updateActiveTag(tag);
+    }
+
+    function updateActiveTag(tag) {
+      document.querySelectorAll('.filter-group button').forEach(btn => {
+        btn.classList.remove('active');
+        if ((tag === 'all' && btn.textContent.includes('Todos')) ||
+            (tag === 'relax' && btn.textContent.includes('Relax')) ||
+            (tag === 'pele' && btn.textContent.includes('Pele')) ||
+            (tag === 'purifica' && btn.textContent.includes('Purif'))) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    function openViewer(index) {
+      currentIndex = index;
+      updateViewer();
+      document.getElementById('viewer').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeViewer() {
+      document.getElementById('viewer').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function navigateOil(dir) {
+      currentIndex = (currentIndex + dir + filteredOils.length) % filteredOils.length;
+      updateViewer();
+    }
+
+    function updateViewer() {
+      const oil = filteredOils[currentIndex];
+      document.getElementById('viewer-img').src = oil.file;
+      document.getElementById('viewer-img').alt = oil.name;
+      document.getElementById('viewer-name').textContent = oil.name;
+      document.getElementById('viewer-desc').textContent = oil.desc;
+      document.getElementById('viewer-tag').textContent = 'ÓLEO ESSENCIAL • ' + oil.tag.toUpperCase();
+      document.getElementById('viewer-counter').textContent = (currentIndex + 1) + ' / ' + filteredOils.length;
+    }
+
+    function shareOil() {
+      const oil = filteredOils[currentIndex];
+      if (!oil) return;
+      const text = oil.name + ' — ' + oil.desc;
+      if (navigator.share) {
+        navigator.share({ title: oil.name, text });
+      } else {
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = document.querySelector('.share-btn');
+          const orig = btn.innerHTML;
+          btn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
+          setTimeout(() => { btn.innerHTML = orig; }, 1400);
+        });
+      }
+    }
+
+    function gerarPDF() {
+      window.print();
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const v = document.getElementById('viewer');
+        if (v.classList.contains('open')) closeViewer();
+      }
+      if (e.key === 'ArrowLeft') {
+        const v = document.getElementById('viewer');
+        if (v.classList.contains('open')) navigateOil(-1);
+      }
+      if (e.key === 'ArrowRight') {
+        const v = document.getElementById('viewer');
+        if (v.classList.contains('open')) navigateOil(1);
+      }
+    });
+
+    document.getElementById('viewer').onclick = closeViewer;
+
+    renderOils(oils);
+    document.querySelector('.filter-group button:first-child')?.classList.add('active');
+  </script>
+</body>
+</html>
